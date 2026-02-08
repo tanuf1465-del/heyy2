@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine for Shanzu ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff4d6d, #ff99ac);
+      font-family: "Poppins", sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 15px 28px;
+      font-size: 1.1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    #yesBtn {
+      background: #ff3366;
+      color: white;
+      transform: scale(1);
+    }
+
+    #noBtn {
+      background: #ffffff;
+      color: #ff3366;
+      transform: scale(1);
+    }
+
+    .celebration {
+      font-size: 1.8rem;
+      line-height: 1.5;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 id="question">Shanzu, will you be my valentine?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+
+  <script>
+    const question = document.getElementById("question");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    let noClicks = 0;
+    let yesScale = 1;
+    let noScale = 1;
+
+    const noMessages = [
+      "nice try smartypants but the No button is broken 😢",
+      "No-uh u are not gonna say No to your baby boy, not today."
+    ];
+
+    noBtn.addEventListener("click", () => {
+      noClicks++;
+
+      // Shrink NO and grow YES
+      noScale *= 0.8;
+      yesScale *= 1.2;
+
+      noBtn.style.transform = `scale(${noScale})`;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      // Alternate messages
+      question.textContent = noMessages[(noClicks - 1) % 2];
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.querySelector(".container").innerHTML = `
+        <div class="celebration">
+          WOAHHHHHHH GUYS SHE SAID YESSSSSSSSSSS RAAAAAAAAAAAA ❤️<br/><br/>
+          I LOVE YOU SO MUCH ❤️<br/><br/>
+          Here's a chocolate for you 🍫
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
