@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Valentine for Shanzu ❤️</title>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -46,19 +49,18 @@
       font-size: 1.1rem;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: transform 0.25s ease, background 0.2s;
+      font-weight: 600;
     }
 
     #yesBtn {
       background: #ff3366;
       color: white;
-      transform: scale(1);
     }
 
     #noBtn {
-      background: #ffffff;
+      background: white;
       color: #ff3366;
-      transform: scale(1);
     }
 
     .celebration {
@@ -102,22 +104,25 @@
     noBtn.addEventListener("click", () => {
       noClicks++;
 
-      // Shrink NO and grow YES
-      noScale *= 0.8;
-      yesScale *= 1.2;
+      // grow YES, shrink NO
+      yesScale += 0.2;
+      noScale -= 0.1;
 
-      noBtn.style.transform = `scale(${noScale})`;
+      if (noScale < 0.4) noScale = 0.4;
+
       yesBtn.style.transform = `scale(${yesScale})`;
+      noBtn.style.transform = `scale(${noScale})`;
 
-      // Alternate messages
+      // alternate messages
       question.textContent = noMessages[(noClicks - 1) % 2];
     });
 
     yesBtn.addEventListener("click", () => {
-      document.querySelector(".container").innerHTML = `
+      const container = document.querySelector(".container");
+      container.innerHTML = `
         <div class="celebration">
-          WOAHHHHHHH GUYS SHE SAID YESSSSSSSSSSS RAAAAAAAAAAAA ❤️<br/><br/>
-          I LOVE YOU SO MUCH ❤️<br/><br/>
+          WOAHHHHHHH GUYS SHE SAID YESSSSSSSSSSS RAAAAAAAAAAAA ❤️<br><br>
+          I LOVE YOU SO MUCH ❤️<br><br>
           Here's a chocolate for you 🍫
         </div>
       `;
